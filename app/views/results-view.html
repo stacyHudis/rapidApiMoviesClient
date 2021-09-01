@@ -1,0 +1,24 @@
+<div>
+    <p>Results</p>
+
+    <div class="movie-card clickable",  ng-repeat="movie in moviesCtlr.items">
+        <div ng-click="moviesCtlr.onMovieClick(movie)">
+            <p>{{ movie.Title }} ({{ movie.Year }})</p>
+            <img class="card-image" src="{{movie.Poster}}">
+        </div>
+
+    </div>
+
+    <div ng-if="moviesCtlr.pager.pages.length" class="pagination">
+        <div ng-class="{disabled:moviesCtlr.pager.currentPage === 1}">
+            <a ng-click="moviesCtlr.setPage(moviesCtlr.pager.currentPage - 1)">Previous</a>
+        </div>
+        <div ng-repeat="page in moviesCtlr.pager.pages" ng-class="{active:moviesCtlr.pager.currentPage === page}">
+            <a ng-click="moviesCtlr.getMovieByTitle(page)">{{page}}</a>
+        </div>
+        <div ng-class="{disabled:moviesCtlr.pager.currentPage === moviesCtlr.pager.totalPages}">
+            <a ng-click="moviesCtlr.setPage(moviesCtlr.pager.currentPage + 1)">Next</a>
+        </div>
+    </div>
+
+</div>

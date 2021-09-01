@@ -1,0 +1,2 @@
+(()=>{"use strict";angular.module("myApp",["ngRoute"]).config((function(e,r){r.hashPrefix(""),e.when("/",{templateUrl:"views/search-view.html",controller:"SearchController",controllerAs:"vm"}).when("/search",{templateUrl:"views/results-view.html",controller:"SearchController",controllerAs:"vm"}).when("/movie/:id",{templateUrl:"views/movie-view.html",controller:"MovieController",controllerAs:"movieCtrl"}).otherwise({redirectTo:"/"})}))})();
+//# sourceMappingURL=app.bundle.js.map

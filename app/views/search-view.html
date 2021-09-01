@@ -1,0 +1,16 @@
+<div class="back"></div>
+<div class="filter"></div>
+
+<div class="container">
+    <p class="search">Search Movie </p>
+    <input id="search-bar" type="text" placeholder="Enter Movie Name" autofocus
+           ng-model="vm.title"
+           ng-value="vm.title">
+    <button ng-click="vm.onSearchClick(vm.title)">Search</button>
+<!--    <p ng-click="manageBacklog()">CLICK</p>-->
+<!--    <form action="/results" method="GET">-->
+<!--        <input type="text" placeholder="Enter Movie name or keyword" name="movie" required>-->
+<!--        <input type="Submit" value="Find">-->
+<!--    </form>-->
+</div>
+
