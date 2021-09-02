@@ -7,6 +7,7 @@
             this.loading       = SearchService.loading;
             this.$q            = $q;
             this.searchService = SearchService;
+            this.loading = true;
 
             //Get Route Param from url
             this.id            = $route.current.params;
@@ -30,6 +31,8 @@
             let promise = this.searchService.getMovieByID(id.id);
             this.showBusy([promise]);
             this.movie = await promise;
+            this.loading = false;
+
         }
     }
 

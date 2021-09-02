@@ -1,6 +1,6 @@
 <p class="results-title">Movie Details</p>
 
-<div class="movie-card clickable"  cg-busy="movieCtrl.isBusy">
+<div class="movie-card clickable"  ng-if="movieCtrl.loading !== true">
   <p>{{movieCtrl.movie.Title}}</p>
   <img class="card-image" src="{{movieCtrl.movie.Poster}}">
   <div>
@@ -18,7 +18,6 @@
       <li>Runtime: {{movieCtrl.movie.Runtime}}</li>
       <li>Writer: {{movieCtrl.movie.Writer}}</li>
       <li>Year: {{movieCtrl.movie.Year}}</li>
-      <li>imdbID: {{movieCtrl.movie.imdbID}}</li>
       <li>imdbRating: {{movieCtrl.movie.imdbRating}}</li>
       <li>imdbVotes: {{movieCtrl.movie.imdbVotes}}</li>
     </ul>
