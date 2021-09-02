@@ -1,17 +1,15 @@
-function SearchService ($http, $route, ApiFactory) {
-  var SearchService = {};
+function SearchService ($http) {
+  let SearchService = {};
 
-  SearchService.loading = false;
-
+  //Get Movie by Title
   SearchService.getMovieByTitle = async (title, page) => {
-  debugger;
     let res = await $http.get(`http://localhost:3000/api/movies/?s=${title.s}&page=${page}`);
 
     return res.data.notes;
   };
 
+  //Get Movie by Id
   SearchService.getMovieByID = async (id) => {
-    debugger;
     let res = await $http.get(`http://localhost:3000/api/movies/`+ id);
 
     return res.data.notes;

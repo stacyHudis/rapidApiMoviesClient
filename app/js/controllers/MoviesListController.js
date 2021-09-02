@@ -1,39 +1,39 @@
-(function() {
+(function () {
     'use strict';
+
     class MoviesListController {
-        constructor(SearchService, PageService, $route, $scope, $q, $location, $window) {
-            this.$window = $window;
-            this.$location = $location;
-            this.pageService = PageService;
-            this.$q = $q;
-            debugger;
-            this.title = $location.search();
+        constructor(SearchService, PageService, $route, $q, $location, $window) {
+            this.$window       = $window;
+            this.$location     = $location;
+            this.pageService   = PageService;
             this.searchService = SearchService;
+            this.$q            = $q;
+            //Get search movie title value from url
+            this.title         = $location.search();
+            //Initialize pager obj used for pagination
             this.pager = {};
+
             this.init();
-
         }
 
-        async init(){
-            await this.getMovieByTitle( 1);
+        //Get movie by Title
+        async init() {
+            await this.getMovieByTitle(1);
         }
 
-        onMovieClick (movie){
+        //Redirect to Movie details page
+        onMovieClick(movie) {
             let id = _.get(movie, 'imdbID');
+
+            //Redirect to Movie Details page
             this.$window.location = this.$window.location.origin + '#/movie/' + id;
         }
 
         showBusy(promises) {
             this.isBusy = {
-                promise:  this.$q.all(promises),
+                promise: this.$q.all(promises),
                 backdrop: true
             };
-        }
-
-        initController() {
-            // initialize to page 1
-            debugger;
-            this.setPage(1);
         }
 
         setPage(page) {
@@ -41,21 +41,27 @@
                 return;
             }
 
-            // get pager object from service
+            // set pager object from service
             this.pager = this.pageService.GetPager(this.totalResults, page);
 
-            // get current page of items
-            this.items = this.movies;
         }
 
         async getMovieByTitle(page) {
             let promise = this.searchService.getMovieByTitle(this.title, page);
             this.showBusy([promise]);
             let res = await promise;
-            this.movies = res.Search;
-            this.totalResults = res.totalResults
-            this.setPage(page);
-            // this.$window.location = this.$window.location.origin + '#/search?s=' + title;
+
+            //check if valid response present
+            let responseObj = _.get(res, 'Response');
+            if (responseObj === "True") {
+                this.movies       = res.Search;
+                this.totalResults = res.totalResults;
+                this.noResponse   = false;
+
+                this.setPage(page);
+            } else {
+                this.noResponse = true;
+            }
         }
     }
 
@@ -63,13 +69,11 @@
         'SearchService',
         'PageService',
         '$route',
-        '$scope',
         '$q',
         '$location',
         '$window'
     ];
 
     angular.module('myApp').controller('MoviesListController', MoviesListController);
-
 })();
 

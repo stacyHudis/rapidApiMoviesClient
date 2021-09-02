@@ -1,4 +1,6 @@
-<div >
+<p class="results-title">Movie Details</p>
+
+<div class="movie-card clickable"  cg-busy="movieCtrl.isBusy">
   <p>{{movieCtrl.movie.Title}}</p>
   <img class="card-image" src="{{movieCtrl.movie.Poster}}">
   <div>
@@ -6,6 +8,19 @@
       <li>Actors: {{movieCtrl.movie.Actors}}</li>
       <li>Awards: {{movieCtrl.movie.Awards}}</li>
       <li>Country: {{movieCtrl.movie.Country}}</li>
+      <li>Director: {{movieCtrl.movie.Director}}</li>
+      <li>Genre: {{movieCtrl.movie.Genre}}</li>
+      <li>Language: {{movieCtrl.movie.Language}}</li>
+      <li>Metascore: {{movieCtrl.movie.Metascore}}</li>
+      <li>Plot: {{movieCtrl.movie.Plot}}</li>
+      <li>Rated: {{movieCtrl.movie.Rated}}</li>
+      <li>Released: {{movieCtrl.movie.Released}}</li>
+      <li>Runtime: {{movieCtrl.movie.Runtime}}</li>
+      <li>Writer: {{movieCtrl.movie.Writer}}</li>
+      <li>Year: {{movieCtrl.movie.Year}}</li>
+      <li>imdbID: {{movieCtrl.movie.imdbID}}</li>
+      <li>imdbRating: {{movieCtrl.movie.imdbRating}}</li>
+      <li>imdbVotes: {{movieCtrl.movie.imdbVotes}}</li>
     </ul>
   </div>
 </div>

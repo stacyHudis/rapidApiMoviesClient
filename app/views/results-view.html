@@ -1,15 +1,19 @@
-<div>
-    <p>Results</p>
+<div cg-busy="moviesCtlr.isBusy">
 
-    <div class="movie-card clickable",  ng-repeat="movie in moviesCtlr.items">
+    <p class="results-title" ng-if="moviesCtlr.noResponse === false">Movie Results</p>
+
+    //Results Movie Cards
+    <div ng-if="moviesCtlr.movies.length > 0",
+         class="movie-card clickable",
+         ng-repeat="movie in moviesCtlr.movies">
         <div ng-click="moviesCtlr.onMovieClick(movie)">
             <p>{{ movie.Title }} ({{ movie.Year }})</p>
             <img class="card-image" src="{{movie.Poster}}">
         </div>
-
     </div>
 
-    <div ng-if="moviesCtlr.pager.pages.length" class="pagination">
+    //Pagination
+    <div ng-if="moviesCtlr.movies.length > 0" class="pagination">
         <div ng-class="{disabled:moviesCtlr.pager.currentPage === 1}">
             <a ng-click="moviesCtlr.setPage(moviesCtlr.pager.currentPage - 1)">Previous</a>
         </div>
@@ -19,6 +23,10 @@
         <div ng-class="{disabled:moviesCtlr.pager.currentPage === moviesCtlr.pager.totalPages}">
             <a ng-click="moviesCtlr.setPage(moviesCtlr.pager.currentPage + 1)">Next</a>
         </div>
+    </div>
+    //Empty Data
+    <div ng-if="moviesCtlr.noResponse === true">
+        <p class="container search">No Results Found</p>
     </div>
 
 </div>
